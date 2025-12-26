@@ -166,7 +166,10 @@ if __name__ == "__main__":
         prefill_data[image_insert_index : image_insert_index + 256] = vit_output_list[idx][0, :, :]
     ##################################
 
-    cfg = config.llm_config
+    if hasattr(config, 'llm_config') and config.llm_config is not None: # 兼容 GPTQ INT4 模型
+        cfg = config.llm_config
+    else:
+        cfg = config
 
     eos_token_id = None
     if isinstance(cfg.eos_token_id, list) and len(cfg.eos_token_id) > 1:

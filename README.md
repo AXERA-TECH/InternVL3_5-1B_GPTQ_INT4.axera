@@ -197,7 +197,7 @@ slice_indices: [0, 1, 2]
 Slice prefill done: 0
 Slice prefill done: 1
 Slice prefill done: 2
-answer >> 这是一张红熊猫的照片。红熊猫是一种红棕色的哺乳动物，通常生活在亚洲的森林中。它们以捕食昆虫和小型无脊椎动物为生。图片中，红熊猫正坐在一个木制的平台上，背景是绿色的树木和植被，显得非常自然和生动。红熊猫的表情看起来很友好，似乎在观察或等待什么。
+answer >> This image shows a close-up of a red panda with a brown and white face, featuring its distinctive facial markings and ears. The red panda is holding onto a piece of wood or a branch, and it appears to be in a natural or zoo-like setting with green foliage in the background.
 ```
 
 #### 推理耗时统计
