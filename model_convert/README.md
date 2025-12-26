@@ -74,7 +74,7 @@ $ conda create -n gptq python=3.13 -y
 $ conda activate gptq
 ```
 
-当前使用的 `pytorch` 版本为 `2.9.1`, `torchvision` 版本为 `0.24.1`., 参考 [ModelCloud GPTQModel](https://github.com/ModelCloud/GPTQModel) 安装 `GPTQ` 量化支持.
+当前使用的 `pytorch` 版本为 `2.9.1`, `torchvision` 版本为 `0.24.1`. 参考 [ModelCloud GPTQModel](https://github.com/ModelCloud/GPTQModel) 安装 `GPTQ` 量化支持.
 
 ```sh
 # clone repo
