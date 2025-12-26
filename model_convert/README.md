@@ -96,14 +96,15 @@ pip install -v . --no-build-isolation
 ```sh
 CUDA_VISIBLE_DEVICES=0 python3 convert_to_gptq.py \
     --model_id InternVL3_5-1B \
-    --out_dir ./InternVL3_5-1B-GPTQ-Int4 \
+    --out_dir ./InternVL3_5-1B_GPTQ_INT4 \
     --bits 4
 ```
 
 ### LLM build
 
 ```bash
-pulsar2 llm_build --input_path ../python/InternVL3_5-1B  --output_path ../python/InternVL3_5-1B_axmodel  --hidden_state_type bf16 --prefill_len 128 --kv_cache_len 2047 --last_kv_cache_len 128 --last_kv_cache_len 256 --last_kv_cache_len 384 --last_kv_cache_len 512 --last_kv_cache_len 640 --last_kv_cache_len 768 --last_kv_cache_len 896 --last_kv_cache_len 1024  --chip AX650 -c 1 --parallel 28
+# 编译上下文 2k, 最大 prefill 为 1k 的模型
+pulsar2 llm_build --input_path ../python/InternVL3_5-1B_GPTQ_INT4  --output_path ../python/InternVL3_5-1B_GPTQ_INT4_axmodel  --hidden_state_type bf16 --prefill_len 128 --kv_cache_len 2047 --last_kv_cache_len 128 --last_kv_cache_len 256 --last_kv_cache_len 384 --last_kv_cache_len 512 --last_kv_cache_len 640 --last_kv_cache_len 768 --last_kv_cache_len 896 --last_kv_cache_len 1024  --chip AX650 -c 1 --parallel 28
 ```
 
 使用上述命令编译大语言模型, 注意**自行修改**模型输入输出路径.
