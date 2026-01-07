@@ -1,6 +1,7 @@
 import argparse
 import os
 import time
+import socket
 from typing import Any, Dict, List, Optional, Generator, Tuple
 
 import gradio as gr
@@ -27,6 +28,22 @@ SYSTEM_PROMPT = (
     "是一个有用无害的人工智能助手, 擅长思考和回答用户的问题. 请你在回答问题时使用简体中文."
     "<|im_end|>\n"
 )
+
+
+def _list_host_ips() -> List[str]:
+    ips = set()
+    try:
+        hostname = socket.gethostname()
+        infos = socket.getaddrinfo(hostname, None, family=socket.AF_INET)
+        for info in infos:
+            ip = info[4][0]
+            if ip and not ip.startswith("127."):
+                ips.add(ip)
+    except Exception:
+        pass
+    if not ips:
+        ips.add("127.0.0.1")
+    return sorted(ips)
 
 
 def build_transform(input_size: int):
@@ -364,6 +381,18 @@ class InternVLGradioDemo:
             )
             # 移除 user_input.submit，由自定义 JS 处理 Enter 发送，Shift+Enter 换行
             clear_btn.click(fn=_clear, inputs=None, outputs=[chatbot, user_input, image_input, metrics_md, send_btn])
+
+        target_port = server_port or 7860
+        host_candidates: List[str] = []
+        if server_name:
+            host_candidates.append(server_name)
+        host_candidates.extend(_list_host_ips())
+        printed = set()
+        print("可访问地址 (请任选其一):")
+        for ip in host_candidates:
+            if ip and ip not in printed:
+                printed.add(ip)
+                print(f"  http://{ip}:{target_port}")
 
         iface.queue().launch(server_name=server_name, server_port=server_port, share=share)
 
