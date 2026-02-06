@@ -2,7 +2,7 @@
 
 > InternVL3_5-1B_GPTQ_INT4 DEMO on Axera NPU.
 
-- 目前支持 `Python` 语言, `C++` 代码在开发中.
+- 目前支持 `Python` 和 `C++` 代码推理, C++ 编译代码见 [ax-llm/ax-internvl3_5](https://github.com/AXERA-TECH/ax-llm/tree/ax-internvl3_5).
 - 预编译模型可以从 [HuggingFace](https://huggingface.co/AXERA-TECH/InternVL3_5-1B_GPTQ_INT4) 下载.
 - 如需自行导出编译 `VIT` 模型请参考 [模型转换](/model_convert/README.md).
 
