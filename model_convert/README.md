@@ -65,7 +65,7 @@ $ cp compiled_output/compiled.axmodel ../python/vit-models/internvl_vit_model_1x
 
 关于 `pulsar2 build` 更详细的文档请参考 [Pulsar2-QuickStart](https://npu.pages-git-ext.axera-tech.com/pulsar2-docs/user_guides_quick/quick_start_ax650.html).
 
-### GPQT 量化 (可选)
+### GPTQ 量化 (可选)
 
 **环境配置**
 
@@ -104,7 +104,7 @@ CUDA_VISIBLE_DEVICES=0 python3 convert_to_gptq.py \
 
 ```bash
 # 编译上下文 2k, 最大 prefill 为 1k 的模型
-pulsar2 llm_build --input_path ../python/InternVL3_5-1B_GPTQ_INT4  --output_path ../python/InternVL3_5-1B_GPTQ_INT4_axmodel  --hidden_state_type bf16 --prefill_len 128 --kv_cache_len 2047 --last_kv_cache_len 128 --last_kv_cache_len 256 --last_kv_cache_len 384 --last_kv_cache_len 512 --last_kv_cache_len 640 --last_kv_cache_len 768 --last_kv_cache_len 896 --last_kv_cache_len 1024  --chip AX650 -c 1 --parallel 28
+pulsar2 llm_build --input_path ../python/InternVL3_5-1B_GPTQ_INT4  --output_path ../python/InternVL3_5-1B_GPTQ_INT4_axmodel  --hidden_state_type bf16 --prefill_len 128 --kv_cache_len 2047 --last_kv_cache_len 128 --last_kv_cache_len 256 --last_kv_cache_len 384 --last_kv_cache_len 512 --last_kv_cache_len 640 --last_kv_cache_len 768 --last_kv_cache_len 896 --last_kv_cache_len 1024  --chip AX650 -c 0 --parallel 8
 ```
 
 使用上述命令编译大语言模型, 注意**自行修改**模型输入输出路径. 编译时使用 `FLOAT_MATMUL_USE_CONV_EU=1` 环境变量可以大幅度提高模型 `TTFT` 时间.
